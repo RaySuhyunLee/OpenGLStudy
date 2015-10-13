@@ -63,8 +63,11 @@ void display()
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-
+	glPushMatrix();
+	//glTranslatef(0.0f, 0.0f, -2.0f)
+	glRotatef(45.0f, 1.0f, 1.0f, 1.0f);
 	drawShape();
+	glPopMatrix();
 
 	glFinish();
 }
@@ -81,7 +84,7 @@ void reshape(int w, int h)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 50.0f);
+	glOrtho(-1.0f, 1.0f, -1.0f, 1.0f, -0.5f, 50.0f);
 }
 
 int main(int argc, char** argv)
