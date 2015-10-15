@@ -4,7 +4,7 @@
 #define WINDOW_HEIGHT 400
 
 void drawShape(){
-	glColor3f(0.7f, 0.f, 0.8f);
+	glColor3f(0.6f, 0.85f, 0.85f);
 
 	glBegin(GL_TRIANGLE_STRIP);
 	glVertex3f(0.5f, 0.5f, 0.5f);
@@ -60,16 +60,19 @@ void drawShape(){
 
 void display()
 {
+	static float rot=0.0f;
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glPushMatrix();
-	//glTranslatef(0.0f, 0.0f, -2.0f)
-	glRotatef(45.0f, 1.0f, 1.0f, 1.0f);
+	glTranslatef(0.0f, 0.0f, -10.0f);
+	glRotatef(rot, 1.0f, 0.7f, 1.0f);
 	drawShape();
 	glPopMatrix();
 
 	glFinish();
+	rot += 0.5f;
+	glutPostRedisplay();
 }
 
 void reshape(int w, int h)
@@ -84,7 +87,8 @@ void reshape(int w, int h)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-1.0f, 1.0f, -1.0f, 1.0f, -0.5f, 50.0f);
+	//glOrtho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 50.0f);
+	gluPerspective(20.0f, 1.0f, 2.0f, 20.0f);
 }
 
 int main(int argc, char** argv)
